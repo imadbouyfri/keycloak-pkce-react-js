@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { React, useEffect } from 'react';
-import { ROOT_URL, CALLBACK_PATH, OIC_ENDPOINT } from '../constants';
+import {ROOT_URL, CALLBACK_PATH, OIC_ENDPOINT, CLIENT_ID} from '../constants';
 import * as actionTypes from '../store/actions/actions';
 
 function AuthorizationCode(props) {
@@ -15,7 +15,7 @@ function AuthorizationCode(props) {
 
     const getAuthCode = async (pkceState, codeChallenge) => {
         let authorizationUrl = OIC_ENDPOINT + "/auth";
-        authorizationUrl += "?client_id=apim-client";
+        authorizationUrl += "?client_id="+CLIENT_ID;
         authorizationUrl += "&response_type=code";
         authorizationUrl += "&scope=openid";
         authorizationUrl += "&redirect_uri=" + ROOT_URL + CALLBACK_PATH;
